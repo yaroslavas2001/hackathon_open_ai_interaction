@@ -24,8 +24,8 @@ function ChatGPT(props) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + String("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"),
-                'OpenAI-Organization': 'org-KtCIkY6TZ7MhbRNmAhvkkRWo'
+                'Authorization': 'Bearer ' + String("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"),
+                'OpenAI-Organization': 'org-AgXJc26Nm6yxMI5j9Vk4sz9f'
             },
             body: JSON.stringify(DEFAULT_PARAMS)
         };
@@ -41,9 +41,11 @@ function ChatGPT(props) {
     return (
         <div>
             <form onSubmit={handleSubmit} className={style.block}>
-                <div>Запрос к тексту:</div>
-                <textarea value={message} className={style.textarea} onChange={(e) => setMessage(e.target.value)}></textarea>
-                <button className={style.btn} type="submit" onBlur={()=>props.isWaitText}>Загрузить текст</button>
+                <div>
+                    <div>Запрос к тексту:</div>
+                    <textarea value={message} className={style.textarea} onChange={(e) => setMessage(e.target.value)}></textarea>
+                    <button className={style.btn} type="submit" onBlur={() => props.isWaitText}>Загрузить текст</button>
+                </div>
             </form>
             {/* <span style={{ 'whiteSpace': 'pre-line' }}>{response}</span> */}
         </div>

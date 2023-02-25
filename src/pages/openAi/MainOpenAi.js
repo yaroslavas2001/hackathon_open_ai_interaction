@@ -4,6 +4,7 @@ import ChatGPTtext from "./ChatGPTtext";
 import Dali from "./Dali";
 import Print from "./Print";
 import Preloader from "./Preloader"
+import style from "./style.module.css"
 function MainOpenAi() {
     const [images, setImages] = useState('');
     const [text, setText] = useState('');
@@ -13,8 +14,9 @@ function MainOpenAi() {
     let saveImage = (images) => {
         setImages(images)
     }
+    
     return (
-        <div className="App">
+        <div className={style.fon}>
             <ChatGPT setText={setText} setIsWaitText={setIsWaitText} isWaitText={isWaitText} />
             {/* {isWaitText ? <Preloader isFetching={isWaitText} /> : <ChatGPTtext text={text} isWaitImage={isWaitText} />} */}
             <Dali saveImage={saveImage} isWaitImage={isWaitImage} setIsWaitImage={setIsWaitImage} />

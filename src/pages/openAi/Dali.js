@@ -24,8 +24,8 @@ function Dali(props) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + String("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"),
-        'OpenAI-Organization': 'org-KtCIkY6TZ7MhbRNmAhvkkRWo'
+        'Authorization': 'Bearer ' + String("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"),
+        'OpenAI-Organization': 'org-AgXJc26Nm6yxMI5j9Vk4sz9f'
       },
       body: JSON.stringify(imageParameters)
     };
@@ -52,7 +52,8 @@ function Dali(props) {
   // let images = imageUrl.map((el, index) => <img key={index} src={el}></img>)
   return (
     <main className={style.block}>
-      <div>Картинка</div>
+      <div>
+      <div>Запрос для картинки:</div>
       <div style={{ backgroundColor: 'red', color: 'white' }}>{error}</div>
       {/* <InputBox label={"Description"} setAttribute={setUserPrompt} /> */}
       <textarea value={userPrompt} className={style.textarea} onChange={(e) => setUserPrompt(e.target.value)}></textarea>
@@ -60,9 +61,9 @@ function Dali(props) {
       <button className={style.btn}  onClick={() => handleSubmit()} onBlur={()=>props.isWaitImage}>
         Загрузить картинку
       </button>
-      {/* <button className="main-button" onClick={() => printImage()}>
-        Test print
-      </button> */}
+      </div>
+   
+
     </main>
   );
 }

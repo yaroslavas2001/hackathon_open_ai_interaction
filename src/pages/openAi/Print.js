@@ -36,7 +36,7 @@ function Print(props) {
   //   )
   // })
   return (
-    <div>
+    <div className={style.block} >
       Результат:
       <div id='htmltoimage' className={stylePrint.print_block}>
         {props.isWaitImage ? <Preloader isFetching={props.isWaitImage} /> :
@@ -50,9 +50,10 @@ function Print(props) {
             {props.text ? <p className={stylePrint.print_text}>{props.text}</p> : ''}
           </>
         }
-        {/* {props.text ?  : ''} */}
       </div>
+      <div>
       <button className={style.btn_active} onClick={downloadimage}>Сохранить</button>
+      </div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ root.render(
     <BrowserRouter>
 
       <Routes>
-        <Route path="/" element={<App />}></Route>
+        <Route path="/open_ai_interaction" element={<App />}></Route>
         <Route path="/policy" element={<Politic />}></Route>
         <Route path="/openAi" element={<MainOpenAi />}></Route>
 
