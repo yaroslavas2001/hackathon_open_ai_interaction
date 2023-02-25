@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import { InputBox } from "./InputBox";
-
+import style from "./style.module.css"
 const configuration = new Configuration({
   apiKey: process.env.REACT_APP_API_KEY,
 });
@@ -24,7 +24,7 @@ function Dali(props) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + String("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"),
+        'Authorization': 'Bearer ' + String("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"),
         'OpenAI-Organization': 'org-KtCIkY6TZ7MhbRNmAhvkkRWo'
       },
       body: JSON.stringify(imageParameters)
@@ -37,7 +37,7 @@ function Dali(props) {
       if (data.data) {
         let test = data.data.map((el) => el.url)
         setImageUrl(test);
-        props.saveImage(test)
+        props.saveImage(test[0])
         setError('')
       }
     } catch (e) {
@@ -51,13 +51,14 @@ function Dali(props) {
 
   // let images = imageUrl.map((el, index) => <img key={index} src={el}></img>)
   return (
-    <main >
+    <main className={style.block}>
+      <div>Картинка</div>
       <div style={{ backgroundColor: 'red', color: 'white' }}>{error}</div>
-      <InputBox label={"Description"} setAttribute={setUserPrompt} />
-      {/* <InputBox label={"Amount"} setAttribute={setNumber} /> */}
-      {/* <InputBox label={"Size"} setAttribute={setSize} /> */}
-      <button className="main-button" onClick={() => handleSubmit()}>
-        Generate
+      {/* <InputBox label={"Description"} setAttribute={setUserPrompt} /> */}
+      <textarea value={userPrompt} className={style.textarea} onChange={(e) => setUserPrompt(e.target.value)}></textarea>
+
+      <button className={style.btn}  onClick={() => handleSubmit()} onBlur={()=>props.isWaitImage}>
+        Загрузить картинку
       </button>
       {/* <button className="main-button" onClick={() => printImage()}>
         Test print

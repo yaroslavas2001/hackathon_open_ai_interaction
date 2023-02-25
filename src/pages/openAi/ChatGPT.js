@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-
+import style from "./style.module.css"
 const configuration = new Configuration({
     apiKey: process.env.REACT_APP_API_KEY,
 });
@@ -24,12 +24,12 @@ function ChatGPT(props) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + String("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"),
+                'Authorization': 'Bearer ' + String("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"),
                 'OpenAI-Organization': 'org-KtCIkY6TZ7MhbRNmAhvkkRWo'
             },
             body: JSON.stringify(DEFAULT_PARAMS)
         };
-       props.setIsWaitText(true)
+        props.setIsWaitText(true)
         const response = await fetch('https://api.openai.com/v1/completions', requestOptions);
         const data = await response.json();
         console.log("data", data)
@@ -40,11 +40,12 @@ function ChatGPT(props) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-                <button type="submit">onSubmit</button>
+            <form onSubmit={handleSubmit} className={style.block}>
+                <div>Запрос к тексту:</div>
+                <textarea value={message} className={style.textarea} onChange={(e) => setMessage(e.target.value)}></textarea>
+                <button className={style.btn} type="submit" onBlur={()=>props.isWaitText}>Загрузить текст</button>
             </form>
-            <span style={{ 'whiteSpace': 'pre-line' }}>{response}</span>
+            {/* <span style={{ 'whiteSpace': 'pre-line' }}>{response}</span> */}
         </div>
     );
 }
