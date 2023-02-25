@@ -24,8 +24,8 @@ function Dali(props) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + String("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"),
-        'OpenAI-Organization': 'org-AgXJc26Nm6yxMI5j9Vk4sz9f'
+        'Authorization': 'Bearer ' + String("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"),
+        'OpenAI-Organization': 'org-gSmZ98eSdkPqs0Plra1vsrSd'
       },
       body: JSON.stringify(imageParameters)
     };
