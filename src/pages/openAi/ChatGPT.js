@@ -17,14 +17,14 @@ function ChatGPT(props) {
         const DEFAULT_PARAMS = {
             "model": "text-davinci-003",
             "prompt": `${message}`,
-            "max_tokens": 1000,
+            "max_tokens": 500,
             "temperature": 0,
         }
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + String("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"),
+                'Authorization': 'Bearer ' + String("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"),
                 'OpenAI-Organization': 'org-KtCIkY6TZ7MhbRNmAhvkkRWo'
             },
             body: JSON.stringify(DEFAULT_PARAMS)
