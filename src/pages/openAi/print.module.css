@@ -1,16 +1,16 @@
 .print_block {
   height: auto;
-  width: 256px;
+  width: 512px;
 
 }
 
 .print_text {
   margin: 20px;
   padding-bottom: 20px;
-  max-width:  256px;
+  max-width:  512px;
 }
 
 .print_img {
   height: 560px;
-  width:  256px;
+  width:  512px;
 }

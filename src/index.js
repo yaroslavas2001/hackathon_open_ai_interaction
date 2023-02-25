@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Politic from './pages/main/Politic';
+import MainOpenAi from './pages/openAi/MainOpenAi';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+
+      <Routes>
+        <Route path="/" element={<App />}></Route>
+        <Route path="/policy" element={<Politic />}></Route>
+        <Route path="/openAi" element={<MainOpenAi />}></Route>
+
+      </Routes>
+
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,6 +1,6 @@
 // import loading from "./../assets/Loading.gif"
 import React, { FC } from "react"
-import loading from "./../assets/Loading.gif"
+import loading from "./../../assets/Loading.gif"
 
 const Preloader = ({ isFetching }) => {
     return (
