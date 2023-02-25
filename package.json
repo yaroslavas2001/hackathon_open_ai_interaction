@@ -2,6 +2,7 @@
   "name": "open_ai_interaction",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yaroslavas2001.github.io/open_ai_interaction/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -41,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "react-test-renderer": "^18.2.0"
   }
 }
