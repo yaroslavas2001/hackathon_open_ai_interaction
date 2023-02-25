@@ -1,0 +1,15 @@
+.print_block {
+  height: auto;
+  width: 512px;
+
+}
+
+.print_text {
+  margin: 20px;
+  max-width: 512px;
+}
+
+.print_img {
+  height: 560px;
+  width: 512px;
+}

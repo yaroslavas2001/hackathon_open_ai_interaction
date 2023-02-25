@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 function Dali(props) {
   const [userPrompt, setUserPrompt] = useState("");
   const [number, setNumber] = useState(1);
-  const [size, setSize] = useState("256x256");
+  const [size, setSize] = useState("512x512");
   const [imageUrl, setImageUrl] = useState([]);
   const [error, setError] = useState('');
 
@@ -24,11 +24,13 @@ function Dali(props) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + String("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")
+        'Authorization': 'Bearer ' + String("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"),
+        'OpenAI-Organization': 'org-KtCIkY6TZ7MhbRNmAhvkkRWo'
       },
       body: JSON.stringify(imageParameters)
     };
     try {
+      props.setIsWaitImage(true)
       const response = await fetch('https://api.openai.com/v1/images/generations', requestOptions);
       const data = await response.json();
       console.log("data", data)
@@ -42,50 +44,18 @@ function Dali(props) {
       setImageUrl([]);
       console.log("response", e.response.json())
       setError(e.response.json().error.message)
+    } finally {
+      props.setIsWaitImage(false)
     }
-    // const data = await response.json();
-
   }
 
-  // const generateImage = async () => {
-  //   const imageParameters = {
-  //     prompt: userPrompt,
-  //     n: parseInt(number),
-  //     size: size,
-  //   };
-  //   // fetch("http://localhost:3000/image/", {
-  //   //   method: 'POST',
-  //   //   headers: { 'Content-Type': 'application/json' },
-  //   //   body: JSON.stringify(imageParameters)
-  //   // }).then((res) => res.json()).then((data) => console.log("data", data))
-
-  //   try {
-  //     const response = await openai.createImage(imageParameters);
-  //     let test = response.data.data.map((el) => el.url)
-  //     setImageUrl(test);
-  //     props.saveImage(test)
-  //     setError('')
-
-  //   } catch (e) {
-  //     setImageUrl([]);
-  //     setError(e.response.data.error.message)
-  //   }
-
-
-  // };
-  let images = imageUrl.map((el, index) => <img key={index} src={el}></img>)
+  // let images = imageUrl.map((el, index) => <img key={index} src={el}></img>)
   return (
     <main >
-      <div style={{ display: 'flex' }}>
-        {images}
-      </div>
-      <div id="print">
-        <p>123</p>
-      </div>
       <div style={{ backgroundColor: 'red', color: 'white' }}>{error}</div>
       <InputBox label={"Description"} setAttribute={setUserPrompt} />
-      <InputBox label={"Amount"} setAttribute={setNumber} />
-      <InputBox label={"Size"} setAttribute={setSize} />
+      {/* <InputBox label={"Amount"} setAttribute={setNumber} /> */}
+      {/* <InputBox label={"Size"} setAttribute={setSize} /> */}
       <button className="main-button" onClick={() => handleSubmit()}>
         Generate
       </button>

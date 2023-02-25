@@ -1,27 +1,16 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useState } from "react";
 import { toPng } from "html-to-image";
 import html2canvas from "html2canvas";
-
+import stylePrint from "./print.module.css"
 function Print(props) {
-  const text = [
-    {
-      id: 0,
-      text: "Lorem"
-    },
-    {
-      id: 1,
-      text: "Lorem 1"
-    },
-    {
-      id: 2,
-      text: "Lorem 2"
-    },
-  ]
+  const [text, setText] = useState(props.text);
+  // const [text, setText] = useState("Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.");
+
   let downloadimage = () => {
     // var container = document.getElementById("image-wrap");
     /*specific element on page*/
     var container = document.getElementById("htmltoimage");; /* full page */
-    html2canvas(container, { allowTaint: true,  useCORS: true, logging:true}).then(function (canvas) {
+    html2canvas(container, { allowTaint: true, useCORS: true, logging: true }).then(function (canvas) {
       //  useCORS: true, logging:true
       var link = document.createElement("a");
       document.body.appendChild(link);
@@ -33,48 +22,28 @@ function Print(props) {
 
 
   }
-  // const ref = useRef(null)
-  // const filter = (node) => {
-  //   // if (node) console.log("img", node)
-  // }
-  // const onButtonClick = useCallback(() => {
-  //   if (ref.current === null) {
-  //     return
-  //   }
-
-  //   toPng(ref.current, { cacheBust: true, filter: filter })
-  //     .then((dataUrl) => {
-  //       const link = document.createElement('a')
-  //       link.download = 'my-image-name.png'
-  //       link.href = dataUrl
-  //       link.click()
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [ref])
 
   let diw = props.images.map((el, index) => {
     return (
       <div className="page" key={index}>
         {/* {el} crossOrigin='Anonymous'*/}
-        <img src={el} className="image" alt="image" crossOrigin='Anonymous'></img>
-        <p className="text">{text[index].text}</p>
+        <img src={el} alt="image" crossOrigin='Anonymous' className={stylePrint.print_img}></img>
+        <p className={stylePrint.print_text}>{text}</p>
+        {/* <p className="text">{text[index].text}</p> */}
       </div>
     )
   })
   return (
-    <main >
-      {/* <div id="htmltoimage" className="row">
-        {diw}
-      </div> */}
-      <div id='htmltoimage'>
-        {diw}
-        {/* DOM nodes you want to convert to PNG */}
+    <div >
+
+      <div id='htmltoimage' className={stylePrint.print_block}>
+                      {diw}
+
+        {/* <img src="https://dl-media.viber.com/5/share/2/long/vibes/icon/image/0x0/324a/4525e51d3f9b1ae09cbba9d7b4600920bf878d4fd66cb1fe90c8760a1f34324a.jpg"/> */}
+        {/* <p className={stylePrint.print_text}>{text}</p> */}
       </div>
-      {/* <button onClick={onButtonClick}>Click me</button> */}
       <button onClick={downloadimage}>Save</button>
-    </main>
+    </div>
   );
 }
 
